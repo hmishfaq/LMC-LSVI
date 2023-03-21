@@ -1,0 +1,44 @@
+{
+  "env": [
+    {
+      "name": ["AlienNoFrameskip-v4", "FreewayNoFrameskip-v4", "GravitarNoFrameskip-v4", "HeroNoFrameskip-v4", "PitfallNoFrameskip-v4", "SolarisNoFrameskip-v4", "QbertNoFrameskip-v4", "VentureNoFrameskip-v4"],
+      "scale_obs": [0],
+      "train_num": [1],
+      "test_num": [1]
+    }
+  ],
+  "device": ["cuda"],
+  "agent": [
+    {
+      "name": ["BootstrappedDQN"],
+      "mask_prob": [1.0],
+      "normalize_grad": [1],
+      "compute_rank_interval": [0],
+      "rank_batch_size": [2048],
+      "num_ensemble": [10],
+      "prior_scale": [1.0],
+      "eps_steps": [1e6],
+      "eps_start": [1.0],
+      "eps_end": [0.05],
+      "eps_test": [0.0]
+    }
+  ],
+  "save_model": [false],
+  "show_progress": [false],
+  "resume_from_log": [true],
+  "save_interval": [5],
+  "epoch": [125],
+  "n_step": [3],
+  "step_per_epoch": [1e5],
+  "step_per_collect": [10],
+  "update_per_step": [0.1],
+  "batch_size": [32],
+  "target_update_steps": [500],
+  "buffer_size": [1e6],
+  "frames_stack": [4],
+  "optimizer": [{"name": ["Adam"], "kwargs": [{"lr": [1e-4]}]}],
+  "discount": [0.99],
+  "seed": [1],
+  "gradient_clip": [-1],
+  "generate_random_seed": [true]
+}

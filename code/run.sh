@@ -1,0 +1,1 @@
+parallel --eta --ungroup python main.py --config_file ./configs/atari8_lmc.json --config_idx {1} ::: $(seq 1 72)

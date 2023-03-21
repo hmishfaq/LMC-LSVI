@@ -1,0 +1,36 @@
+{
+  "env": [
+    {
+      "name": ["AlienNoFrameskip-v4", "FreewayNoFrameskip-v4", "GravitarNoFrameskip-v4", "HeroNoFrameskip-v4", "PitfallNoFrameskip-v4", "SolarisNoFrameskip-v4", "QbertNoFrameskip-v4", "VentureNoFrameskip-v4"],
+      "scale_obs": [0],
+      "train_num": [1],
+      "test_num": [5]
+    }
+  ],
+  "device": ["cuda"],
+  "agent": [{"name": ["LMCDQN"], "update_num": [1]}],
+  "save_model": [false],
+  "show_progress": [false],
+  "resume_from_log": [true],
+  "save_interval": [5],
+  "epoch": [125],
+  "n_step": [3],
+  "step_per_epoch": [1e5],
+  "step_per_collect": [10],
+  "update_per_step": [0.1],
+  "batch_size": [32],
+  "target_update_steps": [500],
+  "buffer_size": [1e6],
+  "frames_stack": [4],
+  "optimizer": [{
+    "name": ["aSGLD"],
+    "kwargs": [{
+      "lr": [1e-4], "noise_scale": [1e-8, 1e-7, 1e-6],
+      "a": [1.0, 0.1, 0.01]
+    }]
+  }],
+  "discount": [0.99],
+  "seed": [1],
+  "gradient_clip": [-1],
+  "generate_random_seed": [true]
+}
