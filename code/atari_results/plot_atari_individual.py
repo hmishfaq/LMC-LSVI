@@ -143,7 +143,6 @@ def smooth_dataframe(df):
       smoothing_window=10,
       index_columns=['agent_id', 'environment_name', 'seed'],
       columns=[
-        # 'train_frame_rate',
         'normalized_return',
         'eval_episode_return',
       ])
@@ -179,15 +178,10 @@ def plot_individual(df, agent_names, hue_kws):
   )
   g.despine(left=False, top=True, right=False, bottom=False)
   g.set_titles(col_template='{col_name}', row_template='{row_name}')
-  g.set_axis_labels('Frame (millions)', '')
-
-  # for ax in g.axes:
-  #   ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=6))
-  #   ax.xaxis.set_major_locator(ticker.MaxNLocator(nbins=5))
+  g.set_axis_labels('Frame (millions)', 'Return')
 
   # Create legend from the final axes.
   legend_x_margin = 0.03
-  # legend_x_margin = 0.15
   legend_y_offset_inches = 0
   legend_y_offset = legend_y_offset_inches / g.fig.get_figheight()
   g.axes[-1].legend(
@@ -200,12 +194,13 @@ def plot_individual(df, agent_names, hue_kws):
     frameon=False,
   )
   g.fig.subplots_adjust(bottom=0.2)
+  g.fig.subplots_adjust(bottom=0.16)
   return g
 
 # Plot
 agent_ids = ['AdamLMCDQN_double', 'AdamLMCDQN_nodouble', 'LangevinAdam_double', 'LangevinAdam_nodouble']
 for agent_id in agent_ids:
-  print(f'Plot for agent: {agent_id}')
+  print(f'Plot for agent_id={agent_id}')
   if agent_id == 'AdamLMCDQN_double':
     experiments = [
       dict(agent_id='AdamLMCDQN_double', agent_name='Adam LMCDQN', color='tab:blue'),
@@ -236,5 +231,5 @@ for agent_id in agent_ids:
   df_exp = df_exp_raw.pipe(add_columns).pipe(smooth_dataframe)
   df = df_exp.sort_values(by=['agent_id', 'environment_name', 'seed', 'frame'])
   g = plot_individual(df, *make_agent_hue_kws(experiments))
-  g.fig.savefig(f'individual_{agent_id}.png')
+  g.fig.savefig(f'individual_{agent_id}.pdf')
   plt.close(g.fig)
