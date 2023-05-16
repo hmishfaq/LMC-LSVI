@@ -1,2 +1,2 @@
 # LMC-LSVI
-Rebuttal for LMC-LSVI ICML 2023
+Submission for LMC-LSVI NeurIPS 2023
