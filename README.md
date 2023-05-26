@@ -1,2 +1,2 @@
 # LMC-LSVI
-Submission for LMC-LSVI NeurIPS 2023
+Code for the paper "Provable and Practical: Efficient Exploration in Reinforcement Learning via Langevin Monte Carlo"
