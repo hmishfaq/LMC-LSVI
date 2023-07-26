@@ -216,7 +216,7 @@ class BootstrappedDQNPolicy(DQNPolicy):
     # and are truncated at the end of each episode
     terminal = indices[-1]
 
-    # TODO (Ziniu Li): return contains all target_q for ensembles
+    # TODO: return contains all target_q for ensembles
     target_qs = []
     with torch.no_grad():
       target_q_torch = target_q_fn(buffer, terminal)  # (None, num_ensemble)
