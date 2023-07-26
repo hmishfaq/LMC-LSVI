@@ -51,7 +51,6 @@ class EnsembledVectorReplayBuffer(VectorReplayBufferBase):
     elif self._save_only_last_obs:
       batch.obs_next = batch.obs_next[:, -1]
 
-    # TODO (Ziniu Li)
     ensemble_mask = np.random.binomial(
       1, self._mask_prob, [self.buffer_num, self._num_ensemble],
     ).astype(batch.done.dtype)
