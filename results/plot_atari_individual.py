@@ -171,9 +171,9 @@ def plot_individual(df, agent_names, hue_kws):
     sns.lineplot,
     'frame_millions',
     'eval_episode_return',
-    errorbar='se',
     estimator='median',
-    alpha=0.5,
+    errorbar='se',
+    # alpha=0.5,
     linewidth=3,
   )
   g.despine(left=False, top=True, right=False, bottom=False)
@@ -203,33 +203,33 @@ for agent_id in agent_ids:
   print(f'Plot for agent_id={agent_id}')
   if agent_id == 'AdamLMCDQN_double':
     experiments = [
-      dict(agent_id='AdamLMCDQN_double', agent_name='Adam LMCDQN', color='tab:blue'),
+      dict(agent_id='AdamLMCDQN_double', agent_name='Adam LMCDQN', color='tab:red'),
       dict(agent_id='NoisyNet_double', agent_name='NoisyNet DQN', color='tab:grey'),
       dict(agent_id='double_q', agent_name='Double DQN', color='tab:purple'),
       dict(agent_id='prioritized', agent_name='Prioritized DQN', color='tab:olive'),
       dict(agent_id='c51', agent_name='C51', color='tab:orange'),
-      dict(agent_id='qrdqn', agent_name='QR-DQN', color='tab:red'),
+      dict(agent_id='qrdqn', agent_name='QR-DQN', color='tab:blue'),
       dict(agent_id='BootDQN_double', agent_name='Bootstrapped DQN', color='black'),
       dict(agent_id='iqn', agent_name='IQN', color='tab:green'),
     ]
   elif agent_id == 'AdamLMCDQN_nodouble':
     experiments = [
-      dict(agent_id='AdamLMCDQN_double', agent_name='Adam LMCDQN (with double Q)', color='tab:blue'),
-      dict(agent_id='AdamLMCDQN_nodouble', agent_name='Adam LMCDQN (w.o. Double Q)', color='tab:orange')
+      dict(agent_id='AdamLMCDQN_double', agent_name='Adam LMCDQN (with Double Q)', color='tab:red'),
+      dict(agent_id='AdamLMCDQN_nodouble', agent_name='Adam LMCDQN (w.o. Double Q)', color='tab:blue')
     ]
   elif agent_id == 'LangevinAdam_double':
     experiments = [
-      dict(agent_id='AdamLMCDQN_double', agent_name='Adam LMCDQN', color='tab:blue'),
-      dict(agent_id='LangevinAdam_double', agent_name='Langevin DQN', color='tab:orange')
+      dict(agent_id='AdamLMCDQN_double', agent_name='Adam LMCDQN', color='tab:red'),
+      dict(agent_id='LangevinAdam_double', agent_name='Langevin DQN', color='tab:blue')
     ]
   elif agent_id == 'LangevinAdam_nodouble':
     experiments = [
-      dict(agent_id='LangevinAdam_double', agent_name='Langevin DQN (with Double Q)', color='tab:blue'),
-      dict(agent_id='LangevinAdam_nodouble', agent_name='Langevin DQN (w.o. Double Q)', color='tab:orange')
+      dict(agent_id='LangevinAdam_double', agent_name='Langevin DQN (with Double Q)', color='tab:red'),
+      dict(agent_id='LangevinAdam_nodouble', agent_name='Langevin DQN (w.o. Double Q)', color='tab:blue')
     ]
   df_exp_raw = load_experiment_data_from_results_csv_dir(experiments, '.')
   df_exp = df_exp_raw.pipe(add_columns).pipe(smooth_dataframe)
   df = df_exp.sort_values(by=['agent_id', 'environment_name', 'seed', 'frame'])
   g = plot_individual(df, *make_agent_hue_kws(experiments))
-  g.fig.savefig(f'individual_{agent_id}.pdf')
+  g.fig.savefig(f'atari_{agent_id}.pdf')
   plt.close(g.fig)
