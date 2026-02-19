@@ -2,7 +2,7 @@
 
 This is the official PyTorch implementation of *Adam LMCDQN* algorithm, introduced in our ICLR 2024 paper [Provable and Practical: Efficient Exploration in Reinforcement Learning via Langevin Monte Carlo](https://arxiv.org/abs/2305.18246).
 
-For implementation in Jax check out this independent [repository](https://github.com/PabloHendriks/AdamLMCDQN/) by Pablo Hendriks.  
+For implementation in Jax check out this independent [repository](https://github.com/PabloHendriks/AdamLMCDQN/) and corresponding [report](https://repository.tudelft.nl/file/File_3d675f90-5d49-4888-a914-a2f4ed1b3c6b?preview=1) by Pablo Hendriks.  
 
 ## Installation
 
